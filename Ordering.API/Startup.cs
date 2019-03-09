@@ -141,6 +141,7 @@
     {
         public static IServiceCollection AddApplicationInsights(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<ITelemetryInitializer>(new CloudRoleNameInitializer("ordering"));
             services.AddApplicationInsightsTelemetry(configuration);
             var orchestratorType = configuration.GetValue<string>("OrchestratorType");
 
